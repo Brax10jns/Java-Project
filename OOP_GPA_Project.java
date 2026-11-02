@@ -9,8 +9,8 @@ byte n = gr.nextByte();
         
  for (byte count = 1; count <= n; count++)
         {
-            System.out.println("Enter the class code, credit hours, and letter grade of course " + count);
-String code = gr.next();
+            System.out.println("Enter the class credit hours, and the letter grade of course " + count);
+
 byte credit = gr.nextByte();
 String grade = gr.next();
 double gpa = 0;
