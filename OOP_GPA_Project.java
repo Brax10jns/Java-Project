@@ -14,3 +14,6 @@ byte n = gr.nextByte();
 byte credit = gr.nextByte();
 String grade = gr.next();
 double gpa = 0;
+
+        // Think we should use cases for each of the grades instead of a bunch of if elses//
+        
