@@ -17,3 +17,23 @@ double gpa = 0;
 
         // Think we should use cases for each of the grades instead of a bunch of if elses//
         
+ if (grade.equals("A")) {
+                gpa = 4.0;
+            }
+            else if (grade.equals("B")) {
+                gpa = 3.0;
+            }
+            else if (grade.equals("C")) {
+                gpa = 2.0;
+            }
+            else if (grade.equals("D")) {
+                gpa = 1.0;
+            }
+            else if (grade.equals("F")) {
+                gpa = 0;
+            }
+            totalgpa += gpa;
+        }
+        System.out.println(totalgpa / n);
+    }
+}    
