@@ -3,6 +3,7 @@
 import javax.swing.*;
 import java.awt.Graphics;
 import java.io.File;
+import java.awt.Font;
 
 public class Main {
     public static void main(String[] args) {
@@ -53,70 +54,70 @@ public class Main {
             };
 
             JTextField hBox1 = new JTextField();
-            hBox1.setBounds(414, 295, 162, 91);
+            hBox1.setBounds(414, 295, 172, 101);
 
             JTextField gBox1 = new JTextField();
-            gBox1.setBounds(596, 295, 162, 91);
+            gBox1.setBounds(596, 295, 172, 101);
 
             JTextField hBox2 = new JTextField();
-            hBox2.setBounds(414, 406, 162, 91);
+            hBox2.setBounds(414, 406, 172, 101);
 
             JTextField gBox2 = new JTextField();
-            gBox2.setBounds(596, 406, 162, 91);
+            gBox2.setBounds(596, 406, 172, 101);
 
             JTextField hBox3 = new JTextField();
-            hBox3.setBounds(414, 518, 162, 91);
+            hBox3.setBounds(414, 518, 172, 101);
 
             JTextField gBox3 = new JTextField();
-            gBox3.setBounds(596, 518, 162, 91);
+            gBox3.setBounds(596, 518, 172, 101);
 
             JTextField hBox4 = new JTextField();
-            hBox4.setBounds(414, 630, 162, 91);
+            hBox4.setBounds(414, 630, 172, 101);
 
             JTextField gBox4 = new JTextField();
-            gBox4.setBounds(596, 630, 162, 91);
+            gBox4.setBounds(596, 630, 172, 101);
 
             JTextField hBox5 = new JTextField();
-            hBox5.setBounds(414, 742, 162, 91);
+            hBox5.setBounds(414, 742, 172, 101);
 
             JTextField gBox5 = new JTextField();
-            gBox5.setBounds(596, 742, 162, 91);
+            gBox5.setBounds(596, 742, 172, 101);
 
             JTextField hBox6 = new JTextField();
-            hBox6.setBounds(798, 295, 162, 91);
+            hBox6.setBounds(798, 295, 172, 101);
 
             JTextField gBox6 = new JTextField();
-            gBox6.setBounds(980, 295, 162, 91);
+            gBox6.setBounds(980, 295, 172, 101);
 
             JTextField hBox7 = new JTextField();
-            hBox7.setBounds(798, 406, 162, 91);
+            hBox7.setBounds(798, 406, 172, 101);
 
             JTextField gBox7 = new JTextField();
-            gBox7.setBounds(980, 406, 162, 91);
+            gBox7.setBounds(980, 406, 172, 101);
 
             JTextField hBox8 = new JTextField();
-            hBox8.setBounds(798, 518, 162, 91);
+            hBox8.setBounds(798, 518, 172, 101);
 
             JTextField gBox8 = new JTextField();
-            gBox8.setBounds(980, 518, 162, 91);
+            gBox8.setBounds(980, 518, 172, 101);
 
             JTextField hBox9 = new JTextField();
-            hBox9.setBounds(798, 630, 162, 91);
+            hBox9.setBounds(798, 630, 172, 101);
 
             JTextField gBox9 = new JTextField();
-            gBox9.setBounds(980, 630, 162, 91);
+            gBox9.setBounds(980, 630, 172, 101);
 
             JTextField hBox10 = new JTextField();
-            hBox10.setBounds(798, 742, 162, 91);
+            hBox10.setBounds(798, 742, 172, 101);
 
             JTextField gBox10 = new JTextField();
-            gBox10.setBounds(980, 742, 162, 91);
+            gBox10.setBounds(980, 742, 172, 101);
 
             JTextField gpaBox = new JTextField();
             gpaBox.setBounds(1185, 184, 238, 166);
             gpaBox.setEditable(false); // output only, the user shouldn't type here
 
-            // ---------- NEW: connect the GUI to GpaCalculator ----------
+            // ---------- connect the GUI to GpaCalculator ----------
 
             // Put the boxes in arrays so we can loop over them.
             // hourBoxes[i] and gradeBoxes[i] are the same course (row).
@@ -126,11 +127,24 @@ public class Main {
                                        gBox6, gBox7, gBox8, gBox9, gBox10};
 
             GpaCalculator calculator = new GpaCalculator();
+            
+            Font boxFont = new Font("Times New Roman", Font.PLAIN, 44);
+            for (int i = 0; i < hourBoxes.length; i++) {
+                hourBoxes[i].setFont(boxFont);
+                gradeBoxes[i].setFont(boxFont);
 
-            // The button that runs the calculation.
-            // Change these bounds so it sits where you want on your template.
+
+                hourBoxes[i].setHorizontalAlignment(JTextField.CENTER);
+                gradeBoxes[i].setHorizontalAlignment(JTextField.CENTER);
+            } 
+
+            gpaBox.setFont(new Font("Times New Roman", Font.BOLD, 60));
+            gpaBox.setHorizontalAlignment(JTextField.CENTER);
+           
             JButton calcButton = new JButton("Calculate GPA");
             calcButton.setBounds(1185, 370, 238, 60);
+            calcButton.setFont(new Font("Arial", Font.BOLD, 25));
+
 
             calcButton.addActionListener(e -> {
                 calculator.reset(); // start fresh each time the button is clicked
@@ -140,7 +154,7 @@ public class Main {
                     String hoursText = hourBoxes[i].getText().trim();
                     String gradeText = gradeBoxes[i].getText().trim();
 
-                    // Skip rows the user left completely empty
+  
                     if (hoursText.isEmpty() && gradeText.isEmpty()) {
                         continue;
                     }
@@ -172,13 +186,6 @@ public class Main {
                 gpaBox.setText(String.format("%.2f", calculator.getGpa()));
             });
 
-            // Optional: pressing Enter in any box also calculates
-            for (int i = 0; i < hourBoxes.length; i++) {
-                hourBoxes[i].addActionListener(e -> calcButton.doClick());
-                gradeBoxes[i].addActionListener(e -> calcButton.doClick());
-            }
-
-            // ---------- end of new code ----------
 
             background.setLayout(null);
 
@@ -238,7 +245,7 @@ class GpaCalculator {
         } else if (grade.equals("F")) {
             return 0.0;
         } else {
-            return -1; // invalid grade
+            return -1;
         }
     }
 
